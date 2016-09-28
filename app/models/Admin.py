@@ -1,9 +1,9 @@
 
 from system.core.model import Model
 
-class User(Model):
+class Admin(Model):
     def __init__(self):
-        super(User, self).__init__()
+        super(Admin, self).__init__()
 
 
     def add_post(self, info):
@@ -25,11 +25,11 @@ class User(Model):
         comments = mysql.query_db(query)
 
     def remove_post(self, info):
-        query = "DELETE FROM posts WHERE id = :posts_id"
+        query = "DELETE FROM posts WHERE id = :posts_id AND users.id = '1'"
         data = {'posts_id': id}
         return mysql.query_db(query, data)
 
     def remove_comment(self, info):
-        query = "DELETE FROM comments WHERE id = :comments_id"
+        query = "DELETE FROM comments WHERE id = :comments_id AND users.id = 1"
         data = {'comments_id': id}
         return mysql.query_db(query, data)
