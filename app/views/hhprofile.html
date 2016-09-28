@@ -12,13 +12,14 @@
       </textarea>
       <button>Submit<button>
     </form>
-
-    <h3>{{ user[first_name]}}{{ user[last_name]}}{{ post[created_at]}}</h3>
+    {% for i in squid %}
+    <h3>{{ i[first_name]}}{{ i[last_name]}}{{ i[created_at]}}</h3>
     <p>Post of the post of the post of the post of the post of the post of the post.</p>
-
-    <h4>{{ user[first_name]}}{{ user[last_name]}}{{ comment[created_at]}}</h4>
+    {% endfor %}
+    {% for j in octopus %}
+    <h4>{{ i[first_name]}}{{ i[last_name]}}{{ i[created_at]}}</h4>
     <p>Comment of a comment of a comment of a comment of a comment of a comment of a comment</p>
-
+    {% endfor %}
     <h3>Comment:</h3>
     <form>
       <textarea class='commenting' rows='5' cols='60'>

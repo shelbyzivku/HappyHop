@@ -8,12 +8,12 @@ class User(Model):
 
     def add_post(self, info):
         query = "INSERT INTO posts (content, updated_at, users_id) VALUES (:content, NOW(), :users_id)"
-        data = { 'content': info['content'], 'users_id': info['id'] }
+        data = { 'posts': info['posts'], 'users_id': info['id'] }
         return self.db.query_db(query, data)
 
     def add_comment(self, info):
         query = "INSERT INTO comments (content, updated_at, users_id) VALUES (:content, NOW(), :users_id)"
-        data = { 'content': info['content'], 'users_id': info['id'] }
+        data = { 'comments': info['comments'], 'users_id': info['id'] }
         return self.db.query_db(query, data)
 
     def display_post_by_id(self, info):
