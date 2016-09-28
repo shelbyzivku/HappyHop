@@ -1,3 +1,4 @@
+This is a Project leveraging Pylot and APIs to build a useful website.
 # Pylot MVC (beta)
 Pylot MVC is a lightweight MVC framework built in Python leveraging flask.
 
