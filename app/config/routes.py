@@ -1,9 +1,9 @@
-"""
-    Routes Configuration File
-
-    Put Routing rules here
-"""
 from system.core.router import routes
+
+routes['default_controller'] = 'Welcome'
+
+routes['/testing/yelp'] = 'Tests#index'
+
 
 """
     This is where you define routes
@@ -15,9 +15,7 @@ from system.core.router import routes
     For example if you had a products controller with an add method that took one parameter 
     named id the automatically generated url would be '/products/add/<id>'
     The automatically generated routes respond to all of the http verbs (GET, POST, PUT, PATCH, DELETE)
-"""
-routes['default_controller'] = 'Welcome'
-"""
+
     You can add routes and specify their handlers as follows:
 
     routes['VERB']['/URL/GOES/HERE'] = 'Controller#method'
