@@ -12,9 +12,11 @@ class Users(Controller):
 
     def index(self):
 
-        return self.load_view('index.html')
+        return self.load_view('hhprofile.html')
 
 
     def add(self):
-        'posts' = request.form['posts']
-        'comments' = request.form['comments']
+        data = {
+            'posts': request.form['posts'],
+            'comments': request.form['comments']
+        }
