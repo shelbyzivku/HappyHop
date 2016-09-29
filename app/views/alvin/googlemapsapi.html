@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Temp</title>
+  <meta name="viewport" content="initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+  <style type="text/css">
+    .container{font-family: 'Lora',serif;}
+    .map{height:500px; margin-bottom:20px;border-radius:5px;}
+  </style>
+</head>
+  
+<body>
+  <nav class="navbar navbar-default" style='color:black;background: rgba(255, 255, 255, 0.7)'>
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <ul class="nav navbar-nav navbar-left">
+          <li><a class="navbar-brand" href="">
+              <img style='width:30px' src='https://sdl-stickershop.line.naver.jp/stickershop/v1/product/1220480/iphone/main@2x.png'>
+            </a>
+          </li>
+          <li><a>Alvin's Demo</a></li>
+        </ul>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Hello World</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <div class="container">
+    <h1>Google Maps API demo <small>Heh</small></h1><br>
+    <div class='col-xs-6 col-xs-offset-3  text-center'>
+      <form>
+        <div class="input-group">
+          <input name="zip" type="text" class="form-control" placeholder="Enter a ZIP" aria-describedby="basic-addon">
+          <span class="input-group-btn"><button class="btn btn-info" type="submit">Find!</button></span>
+        </div>
+      </form>
+      <br><br>
+    </div>
+    <div class="col-xs-10 col-xs-offset-1" style='padding:0px'>
+      <h2>Map</h2>
+      <div id="map"  class="map"></div>
+      <h2>Map2</h2>
+      <div id="map2"></div>
+      <script>
+        var map;
+        var map2;
+        function initMap() {
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 37.397, lng: -121.933},
+            zoom: 10
+          });
+          var myLatLng = {lat: -25.363, lng: 131.044};
+          console.log(data)
+          for x in data['businesses']{
+            console.log(x['coordinates']);
+          }
+          var marker = new google.maps.Marker({
+            position: {lat: 37.375221, lng: -121.910373},
+            map: map,
+            title: 'Hello World!'
+          });
+          
+          map2 = new google.maps.Map(document.getElementById('map2'), {
+          center: {lat: 37.375221, lng: -121.910373},
+          zoom: 12,
+          styles: [
+            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+            {
+              featureType: 'administrative.locality',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'geometry',
+              stylers: [{color: '#263c3f'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#6b9a76'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry',
+              stylers: [{color: '#38414e'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#212a37'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#9ca5b3'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry',
+              stylers: [{color: '#746855'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#1f2835'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#f3d19c'}]
+            },
+            {
+              featureType: 'transit',
+              elementType: 'geometry',
+              stylers: [{color: '#2f3948'}]
+            },
+            {
+              featureType: 'transit.station',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'geometry',
+              stylers: [{color: '#17263c'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#515c6d'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.stroke',
+              stylers: [{color: '#17263c'}]
+            }
+          ]
+        });
+      }
+      </script>
+    </div>
+  </div>
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy46kNvVglXfDw4ElaxAtCvmXhclI1U_o&callback=initMap" async defer></script>
+
+</body>
+</html>
