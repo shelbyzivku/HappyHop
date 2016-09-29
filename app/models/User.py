@@ -6,6 +6,27 @@ class User(Model):
         super(User, self).__init__()
 
 
+    def save_user(self, name, email, facebook_id):
+        user_exist = False
+
+        query = "SELECT * FROM users WHERE email =:email"
+        data = {'email':email}
+        user = self.db.query_db(query, data)
+
+        if len(user) > 0:
+            user_exist = True
+        else:
+            insert_query = "INSERT INTO users(email, user_name, facebook_id, created_at, updated_at) values(:email, :name, :facebook_id, NOW(), NOW())"
+            data = {'email':email,
+                    'name':name,
+                    'facebook_id':facebook_id}
+            self.db.query_db(insert_query, data)
+
+        query = "SELECT * FROM users where email=:email"
+        data = {'email':email}
+        user = self.db.query_db(query, data)
+        return user[0]
+
     def add_post(self, info):
         query = "INSERT INTO posts (content, updated_at, users_id) VALUES (:content, NOW(), :users_id)"
         data = { 'posts': info['posts'], 'users_id': info['id'] }
