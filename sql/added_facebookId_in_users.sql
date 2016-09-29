@@ -1,1 +1,1 @@
-alter table  users add column user_name varchar(255);
+alter table  users add column facebook_id varchar(255);
