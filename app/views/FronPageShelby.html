@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/styles.css"
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
@@ -16,8 +17,8 @@
         background-image:url('images/beer.jpg');
         background-repeat:no-repeat;
         background-position:center center;
-        background-size:120%;
-        padding-bottom: 25px;
+        background-size: auto;
+        padding-bottom: 75px;
       }
 
       #map { height: 350px; width: 100%;}
@@ -27,14 +28,14 @@
       }
 
       input[type=text] {
-        width: 140px;
+        width: 145px;
         box-sizing: border-box;
         border: 2px solid black;
         border-radius: 4px;
         font-size: 19px;
         background-color: #b1e7fe;
         background-image: url('searchicon.png');
-        background-position: 10px 10px;
+        background-position: 9px 9px;
         background-repeat: no-repeat;
         padding: 10px;
     -webkit-transition: width 0.4s ease-in-out;
@@ -60,6 +61,7 @@
 
 </style>
       
+<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
 
 </head>
 <body>
@@ -73,6 +75,10 @@
       
       <!-- FACEBOOK LOGIN GOES HERE -->
 
+
+</script>
+
+
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Eventual Facebook Login</a></li>
       </ul>
@@ -85,7 +91,7 @@
 <div class="container text-center">
   <img src="images/happy.png" class='title' alt="drinks">
   <img src="images/hop.png" class='title' alt="drinks">
-  <p><h3>where's <i>your</i> happy hour?</h3></p>
+  <h3 style= 'color: black; text-shadow: 1px 1px #b1e7fe'>where's <i>your</i> happy hour?</h3>
   <br>
   <div class="col-sm-8 col-sm-offset-2 text-center">
   <form>
