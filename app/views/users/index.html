@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Happy Hop</title>
+<meta charset="UTF-8">
+<link rel="shortcut icon" href="/static/images/beer.png" type="image/png"/>
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+</head>
+<body>
+<div id="fb-root"></div>
+<script>
+function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      var accessToken = response.authResponse.accessToken;
+      console.log(response.authResponse.accessToken);
+      
+    } 
+  }
+
+
+     
+function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+
+    });
+
+    FB.api('/me?fields=id,name,email', function(response) {
+       console.log(JSON.stringify(response));
+       //console.log(response.name);
+       var user_name = response.name;
+       var user_email = response.email;
+       console.log(response.user_email);
+       get_data(response.id, user_name, user_email);
+    });
+  }
+
+	(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=1785016801778237";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+
+ function get_data(name, email){
+ 	$.ajax({
+	  method: "POST",
+	  url: "/users/login",
+	  data: { name: "name", email: "email" }
+	})
+	  .done(function( msg ) {
+	    alert( "Data Saved: " + msg );
+	    //return redirect('/hhprofile')
+  });
+ }
+	
+	
+</script>
+
+<div id ="div1" class="fb-login-button" scope="public_profile, email" data-max-rows="1" data-size="large" data-show-faces="true" data-auto-logout-link="true" onlogin="checkLoginState();"></div>
+
+</body>
+</html>
