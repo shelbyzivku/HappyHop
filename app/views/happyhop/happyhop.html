@@ -34,7 +34,6 @@
         border-radius: 4px;
         font-size: 19px;
         background-color: #b1e7fe;
-        background-image: url('searchicon.png');
         background-position: 9px 9px;
         background-repeat: no-repeat;
         padding: 10px;
@@ -178,11 +177,15 @@ function checkLoginState() {
             </script>
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy46kNvVglXfDw4ElaxAtCvmXhclI1U_o&callback=initMap"
                 async defer></script>
-</div>
-</div>
-{% for hhlocation in hhlocations %}
-<a href='/happyhop/{{ hhlocation['id']}}'>{{ hhlocation['name']}}</a><br>
+                <br><br><br>
+
+<style 'color: black; text-shadow: 1px 1px #b1e7fe'>{% for hhlocation in hhlocations %}</style>
+<a href="/happyhop/{{ hhlocation['id']}}" style= 'color: black; text-shadow: 1px 1px #b1e7fe'>{{ hhlocation['name']}}</a><br>
 {% endfor %}
+                
+</div>
+</div>
+
 
   </body>
 </html>

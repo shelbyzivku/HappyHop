@@ -1,37 +1,210 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
+<html lang="en">
 
-    <h3>Happy Hop Profile Page</h3>
-    <p><strong>Name:</strong> {{happyhopname['name']}}</p>
-    <p><strong>Address:</strong>{{happyhoplocation['address1']}}</p>
-    <div id ="div1" class="fb-login-button" scope="public_profile, email" data-max-rows="1" data-size="large" data-show-faces="true" data-auto-logout-link="true" onlogin="checkLoginState();"></div>
+<head>
+<title>Happy Hop Business Profile</title>
+<meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <style>
+      body{
+        background-image:url('../static/images/backgroundbeer.jpg');
+        background-repeat:no-repeat;
+        background-position:center center;
+        background-size:120%;
+        padding-bottom: 25px;
+      }
+
+      #map { height: 500px; width: 100%;}
+        h1{font-family: 'Lora',serif;}
+        h1 small{
+        color:#4b4b4b;
+      }
+
+      input[type=text] {
+        width: 140px;
+        box-sizing: border-box;
+        border: 2px solid black;
+        border-radius: 4px;
+        font-size: 19px;
+        background-color: #b1e7fe;
+        background-image: url('searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        padding: 10px;
+    -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+}
+
+    input[type=text]:focus {
+       width: 100%;
+}
+
+    .navbar {
+      height:110px;
+      margin-bottom: 2 px;
+      padding-top: 2px;
+      padding-bottom: 2 px;
+      border-radius: 0;
+      background: rgba(177, 231, 254, 0.8);
+    }
+
+    .title {
+      width: auto;
+      height: 200px;
+    }
+
+</style>
+      
+<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"></button>
+      <a href="#"><img src="../static/images/bunny.png" style="padding-top: 9px; margin-right: 10px;" alt="drinking bunny" height="100" width="100"></a>
+    </div>
+      
+      <form class="nav navbar-nav">
+        <input type="text" name="search" placeholder="hoppy search">
+      </form>
+      
+      <!-- facebook -->
+
+      <ul class="nav navbar-nav navbar-right">
+           <div id ="div1" class="fb-login-button" scope="public_profile, email" data-max-rows="1" data-size="large" data-show-faces="true" data-auto-logout-link="true" onlogin="checkLoginState();"></div>
+      </ul>
+
+      <!-- facebook -->
+
+  </div>
+</nav>
+
+<div class="container text-center">
+  <img src="../static/images/happy.png" class='title' alt="happy">
+  <img src="../static/images/hop.png" class='title' alt="hop">
+
+<br><br><br><br>
+
+<div class="row">
+    <div class="col-md-6">
+    
+ 
+
+      <div id="map"></div>
+            <script>
+            var map;
+            function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 37.397, lng: -121.933},
+            zoom: 10
+            });
+           }
+            </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy46kNvVglXfDw4ElaxAtCvmXhclI1U_o&callback=initMap"
+                async defer></script>
+    </div>
+    <div class="col-md-6">
+  
+
+    <!-- START OF ALEJANDRO'S CODE :) -->
+  
+
+
+ 
+    <h3 style= 'color: black; text-shadow: 1px 1px #b1e7fe'> {{happyhopname['name']}}</h3>
+
+    <h3 style= 'color: black; text-shadow: 1px 1px #b1e7fe'> {{happyhoplocation['address1']}}</h3>
+    
+    <!-- <div id ="div1" class="fb-login-button" scope="public_profile, email" data-max-rows="1" data-size="large" data-show-faces="true" data-auto-logout-link="true" onlogin="checkLoginState();"></div> -->
+        
         <form role="form" action="/happyhop/{{happyhopname['id']}}" method="POST">
-    					<div class="form-group">
-    						<textarea class="form-control" rows="3" name="message"></textarea>
-    					</div>
-              <input type ="hidden" name ="happyhop_profile_location_id" value ="{{happyhoplocation['locationId']}}">
-    					<button type='submit' class="btn btn-success" >Post A Message</button>
-    				</form><br><br>
+              
+              <div class="form-group">
+                
+                <textarea class="form-control" rows="3" name="message"></textarea></div>
+               <input type ="hidden" name ="happyhop_profile_location_id" value ="{{happyhoplocation['locationId']}}">
+              <button type='submit' class="btn btn-success" >Post A Message</button>
+            </form><br><br>
 
-    				<div class="panel-title">
+            <div class="panel-title">
                 {% for message in happyhopname_message %}
-                    <h3> {{ message['user_name']}} posted on {{message['created_at']}}</h3>
-                    <p style='margin-left:30px;'> {{ message['content'] }}</p>
+                    <p style= 'color: black; text-shadow: 1px 1px #b1e7fe'> {{ message['user_name']}} posted on {{message['created_at']}}</p>
+                    <p style='margin-left:30px; color: black; text-shadow: 1px 1px #b1e7fe'> {{ message['content'] }}</p>
                 {% endfor %}
-
-    				</div>
-
-
-    			
+            </div>
 
 
 
+<div id="fb-root"></div>
+<script>
+
+function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      var accessToken = response.authResponse.accessToken;
+      console.log(response.authResponse.accessToken);
+
+    }
+  }
 
 
-  </body>
+
+function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+
+    });
+
+    FB.api('/me?fields=id,name,email', function(response) {
+       console.log(JSON.stringify(response));
+       //console.log(response.name);
+       var user_name = response.name;
+       var user_email = response.email;
+       console.log(response.user_email);
+       get_data(response.id, user_name, user_email);
+    });
+  }
+
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=1785016801778237";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+ function get_data(id, name, email){
+  $.ajax({
+    method: "POST",
+    url: "/happyhop/login",
+    data: {"facebookId" :id, "name": name, "email": email }
+  })
+    .done(function( msg ) {
+      if (msg == 'ok')
+         //return redirect('/happyhop')
+         location.reload();
+  });
+ }
+
+
+</script>
+
+
+</body>
 </html>
+
