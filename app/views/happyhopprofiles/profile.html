@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <h3>Happy Hop Profile Page</h3>
+    <p><strong>Name:</strong> {{happyhopname['name']}}</p>
+    <p><strong>Address:</strong>{{happyhoplocation['street_number']}} {{happyhoplocation['street_name']}},
+    {{happyhoplocation['city']}} {{happyhoplocation['state']}}</p>
+    <div id ="div1" class="fb-login-button" scope="public_profile, email" data-max-rows="1" data-size="large" data-show-faces="true" data-auto-logout-link="true" onlogin="checkLoginState();"></div>
+        <form role="form" action="/happyhop/{{happyhopname['id']}}" method="POST">
+    					<div class="form-group">
+    						<textarea class="form-control" rows="3" name="message"></textarea>
+    					</div>
+              <input type ="hidden" name ="happyhop_profile_location_id" value ="{{happyhoplocation['locationId']}}">
+    					<button type='submit' class="btn btn-success" >Post A Message</button>
+    				</form><br><br>
+
+    				<div class="panel-title">
+                {% for message in happyhopname_message %}
+                    <h3> {{ message['user_name']}} posted on {{message['created_at']}}</h3>
+                    <p style='margin-left:30px;'> {{ message['content'] }}</p>
+                {% endfor %}
+
+    				</div>
+
+
+    			
+
+
+
+
+
+  </body>
+</html>

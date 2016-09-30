@@ -16,33 +16,24 @@ class HappyHops(Controller):
             Every controller has access to the load_model method.
         """
         self.load_model('User')
+        self.load_model('HappyHopProfile')
         self.db = self._app.db
 
         """
-        
-        This is an example of a controller method that will load a view for the client 
+
+        This is an example of a controller method that will load a view for the client
 
         """
-   
+
     def index(self):
-        """
-        A loaded model is accessible through the models attribute 
-        self.models['WelcomeModel'].get_users()
-        
-        self.models['WelcomeModel'].add_message()
-        # messages = self.models['WelcomeModel'].grab_messages()
-        # user = self.models['WelcomeModel'].get_user()
-        # to pass information on to a view it's the same as it was with Flask
-        
-        # return self.load_view('index.html', messages=messages, user=user)
-        """
-        return self.load_view('/happyhop/happyhop.html')
+        hhlocations = self.models['HappyHopProfile'].get_all_hhlocations()
+        return self.load_view('/happyhop/happyhop.html', hhlocations=hhlocations)
 
-    def login(self):    
+    def login(self):
        name = request.form['name']
        email = request.form['email']
-       facebookId = request.form['facebookId'] 
-       
+       facebookId = request.form['facebookId']
+
        user = self.models['User'].save_user(name, email, facebookId)
        session['userId'] = user['id']
        session['email'] = user['email']
@@ -51,3 +42,36 @@ class HappyHops(Controller):
 
 
        return "ok"
+
+
+    def message(self, id):
+        print id
+        print session['userId']
+        self.models['User'].add_message(request.form['message'], session['userId'], id, request.form['happyhop_profile_location_id'])
+        happyhopname = self.models['HappyHopProfile'].get_hhname_by_id(id)
+        happyhoplocation = self.models['HappyHopProfile'].get_hhlocation_by_id(id)
+        happyhopname_message = self.models['HappyHopProfile'].display_all_messages_hhname_by_id(id)
+        return self.load_view('/happyhopprofiles/profile.html', happyhopname = happyhopname, happyhoplocation = happyhoplocation, happyhopname_message = happyhopname_message)
+
+    def happyhopdetail(self, id):
+        happyhopname = self.models['HappyHopProfile'].get_hhname_by_id(id)
+        happyhoplocation = self.models['HappyHopProfile'].get_hhlocation_by_id(id)
+        happyhopname_message = self.models['HappyHopProfile'].display_all_messages_hhname_by_id(id)
+        return self.load_view('/happyhopprofiles/profile.html', happyhopname = happyhopname, happyhoplocation = happyhoplocation, happyhopname_message = happyhopname_message)
+
+
+
+    # def comment(self):
+    #      data = {
+    #          'comments': request.form['comments']
+    #      }
+    #      self.models['User'].add_comment(data)
+    #      return redirect('/hhprofile')
+    #
+    # def post_remove(self):
+    #      self.models['User'].remove_post()
+    #      return redirect('/happyhop')
+    #
+    # def comment_remove(self):
+    #      self.models['User'].remove_comment()
+    #      return redirect('/happyhop')

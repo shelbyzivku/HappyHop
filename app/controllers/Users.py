@@ -13,7 +13,7 @@ class Users(Controller):
     def index(self):
         return self.load_view('hhprofile.html')
 
-    def post(self):
+    def message(self):
         data = {
             'posts': request.form['posts']
         }
@@ -29,8 +29,8 @@ class Users(Controller):
 
     def post_remove(self):
         self.models['User'].remove_post()
-        return redirect('/hhprofile')
+        return redirect('/happyhop')
 
     def comment_remove(self):
         self.models['User'].remove_comment()
-        return redirect('/hhprofile')
+        return redirect('/happyhop')
