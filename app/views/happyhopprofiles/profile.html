@@ -4,21 +4,21 @@
 <head>
 <title>Happy Hop Business Profile</title>
 <meta charset="utf-8">
-  
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="shortcut icon" href="/static/images/beer2.png" type="image/png"/>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
+
   <style>
       body{
         background-image:url('../static/images/backgroundbeer.jpg');
         background-repeat:no-repeat;
         background-position:center center;
-        background-size:120%;
-        padding-bottom: 25px;
+        background-size:auto;
+        padding-bottom: 75px;
       }
 
       #map { height: 500px; width: 100%;}
@@ -61,7 +61,7 @@
     }
 
 </style>
-      
+
 <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
 
 </head>
@@ -73,11 +73,11 @@
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"></button>
       <a href="/"><img src="../static/images/bunny.png" style="padding-top: 9px; margin-right: 10px;" alt="drinking bunny" height="100" width="100"></a>
     </div>
-      
+
       <form class="nav navbar-nav">
         <input type="text" name="search" placeholder="hoppy search">
       </form>
-      
+
       <!-- facebook -->
 
       <ul class="nav navbar-nav navbar-right">
@@ -97,8 +97,8 @@
 
 <div class="row">
     <div class="col-md-6">
-    
- 
+
+
 
       <div id="map"></div>
             <script>
@@ -114,23 +114,23 @@
                 async defer></script>
     </div>
     <div class="col-md-6">
-  
+
 
     <!-- START OF ALEJANDRO'S CODE :) -->
-  
 
 
- 
+
+
     <h3 style= 'color: black; text-shadow: 1px 1px #b1e7fe'> {{happyhopname['name']}}</h3>
 
     <h3 style= 'color: black; text-shadow: 1px 1px #b1e7fe'> {{happyhoplocation['address1']}}</h3>
-    
+
     <!-- <div id ="div1" class="fb-login-button" scope="public_profile, email" data-max-rows="1" data-size="large" data-show-faces="true" data-auto-logout-link="true" onlogin="checkLoginState();"></div> -->
-        
+
         <form role="form" action="/happyhop/{{happyhopname['id']}}" method="POST">
-              
+
               <div class="form-group">
-                
+
                 <textarea class="form-control" rows="3" name="message"></textarea></div>
                <input type ="hidden" name ="happyhop_profile_location_id" value ="{{happyhoplocation['locationId']}}">
               <button type='submit' class="btn btn-success" >Post A Message</button>
@@ -208,4 +208,3 @@ function checkLoginState() {
 
 </body>
 </html>
-
