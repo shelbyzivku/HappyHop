@@ -28,7 +28,7 @@ class User(Model):
         return user[0]
 
     def add_message(self, message, user_id, hhprofiles_id, hhlocation_id):
-        query = "INSERT INTO posts (content, created_at, user_id, hhprofiles_id, hhprofiles_locations_id) VALUES (:content, NOW(), :user_id, :hhprofiles_id, :hhprofiles_locations_id)"
+        query = "INSERT INTO posts (content, created_at, updated_at, users_id, hhprofiles_id, hhprofiles_locations_id) VALUES (:content, NOW(), NOW(), :user_id, :hhprofiles_id, :hhprofiles_locations_id)"
         data = { 'content': message, 'user_id': user_id, 'hhprofiles_id': hhprofiles_id, 'hhprofiles_locations_id': hhlocation_id}
         return self.db.query_db(query, data)
 
