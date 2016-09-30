@@ -27,7 +27,9 @@ class HappyHops(Controller):
 
     def index(self):
         hhlocations = self.models['HappyHopProfile'].get_all_hhlocations()
-        return self.load_view('/happyhop/happyhop.html', hhlocations=hhlocations)
+        locations = self.models['HappyHopProfile'].get_all_locations()
+
+        return self.load_view('/happyhop/happyhop.html', hhlocations=hhlocations,locations=locations)
 
     def login(self):
        name = request.form['name']

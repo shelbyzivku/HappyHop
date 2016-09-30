@@ -34,3 +34,6 @@ class HappyHopProfile(Model):
         query = "SELECT p.content, date_format(p.created_at,'%D-%M-%Y') as created_at, u.user_name  from posts p inner join hhprofiles hp on p.hhprofiles_id = hp.id inner join users u on u.id =p.users_id and hp.id = :hhprofiles_id"
         data = { 'hhprofiles_id': id }
         return self.db.query_db(query, data)
+
+    def get_all_locations(self):
+        return self.db.query_db('select * from hhprofiles left join hhtime on hhtime.hhprofiles_id = hhprofiles.id left join (select locations.* from locations left join hhprofiles on locations.id = hhprofiles.locations_id) as locations on locations.id = hhprofiles.locations_id')

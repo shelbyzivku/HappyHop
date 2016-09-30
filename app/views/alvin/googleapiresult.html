@@ -34,51 +34,54 @@
   <div class="container">
     <h1>API demo <small></small></h1><br>
     <div class='col-xs-6 col-xs-offset-3  text-center'>
-      <form action='/testing/getresult' method='POST'>
+      <!-- <form action='/testing/getresult' method='POST'>
         <div class="input-group">
           <input name="zip" type="text" class="form-control" placeholder="Enter a ZIP" aria-describedby="basic-addon">
           <span class="input-group-btn"><button class="btn btn-info" type="submit">Find!</button></span>
         </div>
-      </form>
+      </form> -->
       <br><br>
     </div>
     <div class="col-xs-10 col-xs-offset-1" style='padding:0px'>
       <h2>Map</h2>
       <div id="map" class="map"></div>
       <div id='result' class='result'>
-        {{hhlocations}}
+        {{hhlocations|tojson}}
       </div>
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
       <script>
-      $.get( "/testing/gethhlocations", function( data ) {
-        $( ".result" ).html( data );
-      });
       ///////////////////// GOOGLE MAPS PORTION
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 37.335, lng: -121.890},
-          zoom: 14,
+          zoom: 13,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         });
+        data = {{hhlocations|tojson}}
 
-        // var infowindow = new google.maps.InfoWindow();
-        // var i;
-        // for (i = 0; i < 20; i++) {
-        //   var latitude = data['businesses'][i]['coordinates']['latitude'];
-        //   var longitude = data['businesses'][i]['coordinates']['longitude'];
-        //   var name = data['businesses'][i]['name'];
-        //
-        //   var marker = new google.maps.Marker({
-        //     position: new google.maps.LatLng(latitude, longitude),
-        //     map: map
-        //   });
-        //   attachInfo(marker,name);
-        // }
+        var infowindow = new google.maps.InfoWindow();
+        var i;
+
+        for (i = 0; i < data.length; i++) {
+          console.log(data[i]['name']);
+
+          var latitude = data[i]['latitude'];
+          var longitude = data[i]['longitude'];
+          var name = '<a href="'+data[i]['description']+'">'+data[i]['name']+'</a>';
+
+          var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(latitude, longitude),
+            map: map
+          });
+          attachInfo(marker,name);
+        }
       }
       function attachInfo(marker,name){
         var infowindow = new google.maps.InfoWindow({content:name});
+        //marker.addListener('mouseover',function(){infowindow.open(marker.get('map'),marker);});
         marker.addListener('click',function(){infowindow.open(marker.get('map'),marker);});
+        //marker.addListener('mouseout', function(){infowindow.close();});
       }
       </script>
     </div>

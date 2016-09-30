@@ -73,7 +73,7 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"></button>
-      <a class="" href="#"><img src="../static/images/bunny.png" style="padding-top: 10px;" alt="drinking bunny" height="100" width="100"></a>
+      <a href="/"><img src="../static/images/bunny.png" style="padding-top: 10px;" alt="drinking bunny" height="100" width="100"></a>
     </div>
 
       <!-- FACEBOOK LOGIN GOES HERE -->
@@ -201,10 +201,11 @@ function checkLoginState() {
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy46kNvVglXfDw4ElaxAtCvmXhclI1U_o&callback=initMap"
             async defer></script>
           </div>
+          {% for hhlocation in hhlocations %}
+          <a href='/happyhop/{{ hhlocation['id']}}' style=>{{ hhlocation['name']}}</a><br>
+          {% endfor %}
 </div>
-{% for hhlocation in hhlocations %}
-<a href='/happyhop/{{ hhlocation['id']}}'>{{ hhlocation['name']}}</a><br>
-{% endfor %}
+
 
   </body>
 </html>

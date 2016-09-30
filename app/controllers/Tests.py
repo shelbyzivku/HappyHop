@@ -29,25 +29,11 @@ class Tests(Controller):
         return self.load_view('/alvin/googlemapsapi.html')
 
     def showresults(self):
-        url = "https://maps.googleapis.com/maps/api/geocode/json?address="+str(95112)
-        convertZIP = requests.request("GET",url)
-        print(convertZIP.json())
-
-        hhlocations = self.db.query_db('SELECT street_number,street_name,city,state,zip_code FROM hhprofiles join locations on locations_id = locations.id')
-        print hhlocations
-        print type(hhlocations)
+        hhlocations = self.db.query_db('select * from hhprofiles left join hhtime on hhtime.hhprofiles_id = hhprofiles.id left join (select locations.* from locations left join hhprofiles on locations.id = hhprofiles.locations_id) as locations on locations.id = hhprofiles.locations_id')
+        #print hhlocations
+        #print type(hhlocations)
 
         return self.load_view('/alvin/googleapiresult.html',hhlocations = hhlocations)
-
-
-
-    def gethhlocations(self):
-        hhlocations = self.db.query_db('SELECT street_number,street_name,city,state,zip_code FROM hhprofiles join locations on locations_id = locations.id')
-        print hhlocations
-        print type(hhlocations)
-
-        return Response(json.dumps(hhlocations), mimetype='application/json')
-
 
     def insertlocations(self):
         url = "https://api.yelp.com/v3/businesses/search"
