@@ -27,30 +27,30 @@ class User(Model):
         user = self.db.query_db(query, data)
         return user[0]
 
-    def add_post(self, info):
-        query = "INSERT INTO posts (content, updated_at, users_id) VALUES (:content, NOW(), :users_id)"
-        data = { 'posts': info['posts'], 'users_id': info['id'] }
+    def add_message(self, message, user_id, hhprofiles_id, hhlocation_id):
+        query = "INSERT INTO posts (content, created_at, user_id, hhprofiles_id, hhprofiles_locations_id) VALUES (:content, NOW(), :user_id, :hhprofiles_id, :hhprofiles_locations_id)"
+        data = { 'content': message, 'user_id': user_id, 'hhprofiles_id': hhprofiles_id, 'hhprofiles_locations_id': hhlocation_id}
         return self.db.query_db(query, data)
 
-    def add_comment(self, info):
-        query = "INSERT INTO comments (content, updated_at, users_id) VALUES (:content, NOW(), :users_id)"
-        data = { 'comments': info['comments'], 'users_id': info['id'] }
-        return self.db.query_db(query, data)
+    # def add_comment(self, info):
+    #     query = "INSERT INTO comments (content, updated_at, user_id, hhprofiles_id, hhprofile_locations_id) VALUES (:content, NOW(), :user_id, :hhprofiles_id, :hhprofile_locations_id)"
+    #     data = { 'comments': info['comments'], 'users_id': info['id'] }
+    #     return self.db.query_db(query, data)
+    #
 
-    def display_post_by_id(self, info):
-        query = "SELECT users.first_name, posts.content, posts.users_id, posts.created_at, posts.id FROM posts JOIN users ON posts.users_id ORDER BY posts.created_at DESC"
-        posts = mysql.query_db(query)
 
-    def display_comment_by_id(self, info):
-        query = "SELECT users.first_name, comments.content, comments.users_id, comments.created_at, comments.id, comments.posts FROM comments JOIN users ON comments.users_id ORDER BY comments.created_at DESC"
-        comments = mysql.query_db(query)
 
-    def remove_post(self, info):
-        query = "DELETE FROM posts WHERE id = :posts_id"
-        data = {'posts_id': id}
-        return mysql.query_db(query, data)
-
-    def remove_comment(self, info):
-        query = "DELETE FROM comments WHERE id = :comments_id"
-        data = {'comments_id': id}
-        return mysql.query_db(query, data)
+    #
+    # def display_comment_by_id(self, info):
+    #     query = "SELECT users.first_name, comments.content, comments.users_id, comments.created_at, comments.id, comments.posts FROM comments JOIN users ON comments.users_id ORDER BY comments.created_at DESC"
+    #     comments = mysql.query_db(query)
+    #
+    # def remove_post(self, info):
+    #     query = "DELETE FROM posts WHERE id = :posts_id"
+    #     data = {'posts_id': id}
+    #     return mysql.query_db(query, data)
+    #
+    # def remove_comment(self, info):
+    #     query = "DELETE FROM comments WHERE id = :comments_id"
+    #     data = {'comments_id': id}
+    #     return mysql.query_db(query, data)
