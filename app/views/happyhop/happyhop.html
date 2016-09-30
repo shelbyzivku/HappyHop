@@ -196,8 +196,11 @@ function checkLoginState() {
             function attachInfo(marker,name){
               var infowindow = new google.maps.InfoWindow({content:name});
               //marker.addListener('mouseover',function(){infowindow.open(marker.get('map'),marker);});
+              //infowindow.addListener('mouseover',function(){infowindow.open(marker.get('map'),marker);});
               marker.addListener('click',function(){infowindow.open(marker.get('map'),marker);});
+              //infowindow.addListener('mouseout', function(){infowindow.close();});
               //marker.addListener('mouseout', function(){infowindow.close();});
+
             }
             </script>
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy46kNvVglXfDw4ElaxAtCvmXhclI1U_o&callback=initMap"

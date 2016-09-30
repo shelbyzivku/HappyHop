@@ -37,3 +37,8 @@ class HappyHopProfile(Model):
 
     def get_all_locations(self):
         return self.db.query_db('select * from hhprofiles left join hhtime on hhtime.hhprofiles_id = hhprofiles.id left join (select locations.* from locations left join hhprofiles on locations.id = hhprofiles.locations_id) as locations on locations.id = hhprofiles.locations_id')
+
+    def get_location_by_id(self,id):
+        query = 'select * from hhprofiles left join hhtime on hhtime.hhprofiles_id = hhprofiles.id left join (select locations.* from locations left join hhprofiles on locations.id = hhprofiles.locations_id) as locations on locations.id = hhprofiles.locations_id where locations.id = :id'
+        data = {'id':id}
+        return self.db.query_db(query,data)
