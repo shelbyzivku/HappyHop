@@ -22,7 +22,7 @@
               <img style='width:30px' src='https://sdl-stickershop.line.naver.jp/stickershop/v1/product/1220480/iphone/main@2x.png'>
             </a>
           </li>
-          <li><a>Alvin's Demo</a></li>
+          <li><a>Alvin</a></li>
         </ul>
       </div>
       <ul class="nav navbar-nav navbar-right">
@@ -34,7 +34,7 @@
   <div class="container">
     <h1>API demo <small></small></h1><br>
     <div class='col-xs-6 col-xs-offset-3  text-center'>
-      <form>
+      <form action='/testing/yes' method='POST'>
         <div class="input-group">
           <input name="zip" type="text" class="form-control" placeholder="Enter a ZIP" aria-describedby="basic-addon">
           <span class="input-group-btn"><button class="btn btn-info" type="submit">Find!</button></span>
@@ -43,46 +43,11 @@
       <br><br>
     </div>
     <div class="col-xs-10 col-xs-offset-1" style='padding:0px'>
-      <h2>Map</h2>
-      <div id="map"  class="map"></div>
-
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-      <script>
-      ///////////////////// GOOGLE MAPS PORTION
-      var map;
-      var data = {{data|tojson}}; // get the Yelp API data
-      //console.log(data['businesses'][0]['coordinates']['latitude']);
-
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 37.397, lng: -121.933},
-          zoom: 10
-        });
-
-        for(var i = 0; i < 20; i++){
-          var latitude = data['businesses'][i]['coordinates']['latitude'];
-          var longitude = data['businesses'][i]['coordinates']['longitude'];
-          var name = data['businesses'][i]['name'];
-          var marker = new google.maps.Marker({
-            position: {lat:latitude, lng:longitude},
-            map: map,
-            title: name
-          });
-        }
-
-        var marker = new google.maps.Marker({
-          position: {lat: 37.375221, lng: -121.910373},
-          map: map,
-          title: 'Hello World'
-        });
-      }
-      </script>
     </div>
   </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy46kNvVglXfDw4ElaxAtCvmXhclI1U_o&callback=initMap" async defer></script>
 
 </body>
 </html>
