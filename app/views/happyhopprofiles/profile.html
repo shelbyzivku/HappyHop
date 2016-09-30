@@ -103,7 +103,7 @@
       function initMap() {
       map = new google.maps.Map(document.getElementById('map'), {
       center: new google.maps.LatLng({{location['latitude']}},{{location['longitude']}}),
-      zoom: 12
+      zoom: 14
       });
 
       var marker = new google.maps.Marker({
@@ -121,7 +121,7 @@
     <h3 style= 'color: black; text-shadow: 1px 1px #b1e7fe'> {{location['name']}}</h3>
     <h3 style= 'color: black; text-shadow: 1px 1px #b1e7fe'> {{location['address1']}}</h3>
     <h3 style= 'color: black; text-shadow: 1px 1px #b1e7fe'> {{location['city']}} {{location['state']}}</h3>
-    <h3 style= 'color: black; text-shadow: 1px 1px #b1e7fe'> </h3>
+    <h4 style= 'color: black; text-shadow: 1px 1px #b1e7fe'> Happy Hours: <br /><br />Start: {{location['startime']}}<br />End: {{location['endtime']}}</h4>
 
     <h3><a href='{{location['description']}}' style=''>Yelp Page </a></h3>
     <!-- <div id ="div1" class="fb-login-button" scope="public_profile, email" data-max-rows="1" data-size="large" data-show-faces="true" data-auto-logout-link="true" onlogin="checkLoginState();"></div> -->

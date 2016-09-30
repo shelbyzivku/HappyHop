@@ -53,7 +53,9 @@ class HappyHops(Controller):
         happyhopname = self.models['HappyHopProfile'].get_hhname_by_id(id)
         happyhoplocation = self.models['HappyHopProfile'].get_hhlocation_by_id(id)
         happyhopname_message = self.models['HappyHopProfile'].display_all_messages_hhname_by_id(id)
-        return self.load_view('/happyhopprofiles/profile.html', happyhopname = happyhopname, happyhoplocation = happyhoplocation, happyhopname_message = happyhopname_message)
+        location = self.models['HappyHopProfile'].get_location_by_id(id)
+
+        return self.load_view('/happyhopprofiles/profile.html', happyhopname = happyhopname, happyhoplocation = happyhoplocation, happyhopname_message = happyhopname_message,location = location[0])
 
     def happyhopdetail(self, id):
         happyhopname,happyhoplocation,happyhopname_message = [[1],[2],[3]]

@@ -14,7 +14,7 @@ class HappyHopProfile(Model):
         super(HappyHopProfile, self).__init__()
 
     def get_all_hhlocations(self):
-        query = "SELECT * FROM hhprofiles"
+        query = "SELECT * FROM hhprofiles LIMIT 20"
         hhlocations = self.db.query_db(query)
         return hhlocations
 
@@ -39,6 +39,6 @@ class HappyHopProfile(Model):
         return self.db.query_db('select * from hhprofiles left join hhtime on hhtime.hhprofiles_id = hhprofiles.id left join (select locations.* from locations left join hhprofiles on locations.id = hhprofiles.locations_id) as locations on locations.id = hhprofiles.locations_id')
 
     def get_location_by_id(self,id):
-        query = 'select * from hhprofiles left join hhtime on hhtime.hhprofiles_id = hhprofiles.id left join (select locations.* from locations left join hhprofiles on locations.id = hhprofiles.locations_id) as locations on locations.id = hhprofiles.locations_id where locations.id = :id'
+        query = 'select * from hhprofiles left join hhtime on hhtime.hhprofiles_id = hhprofiles.id left join (select locations.* from locations left join hhprofiles on locations.id = hhprofiles.locations_id) as locations on locations.id = hhprofiles.locations_id where hhprofiles.id = :id'
         data = {'id':id}
         return self.db.query_db(query,data)
