@@ -2,39 +2,40 @@
 <html lang="en">
 
 <head>
-<title>Happy Hop Business Profile</title>
-<meta charset="utf-8">
+  <title>Happy Hop</title>
+  <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/styles.css"
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
   <style>
       body{
-        background-image:url('images/beer.jpg');
+        background-image:url('../static/images/backgroundbeer.jpg');
         background-repeat:no-repeat;
         background-position:center center;
-        background-size:120%;
-        padding-bottom: 25px;
+        background-size: auto;
+        padding-bottom: 75px;
       }
 
-      #map { height: 500px; width: 100%;}
+      #map { height: 350px; width: 100%;}
         h1{font-family: 'Lora',serif;}
         h1 small{
         color:#4b4b4b;
       }
 
       input[type=text] {
-        width: 140px;
+        width: 145px;
         box-sizing: border-box;
         border: 2px solid black;
         border-radius: 4px;
         font-size: 19px;
         background-color: #b1e7fe;
         background-image: url('searchicon.png');
-        background-position: 10px 10px;
+        background-position: 9px 9px;
         background-repeat: no-repeat;
         padding: 10px;
     -webkit-transition: width 0.4s ease-in-out;
@@ -55,11 +56,12 @@
 
     .title {
       width: auto;
-      height: 120px;
+      height: 200px;
     }
 
 </style>
       
+<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
 
 </head>
 <body>
@@ -68,17 +70,17 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"></button>
-      <a href="#"><img src="images/bunny.png" style="padding-top: 10px;" alt="drinking bunny" height="40" width="40"></a>
+      <a class="" href="#"><img src="../static/images/bunny.png" style="padding-top: 10px;" alt="drinking bunny" height="40" width="40"></a>
     </div>
-      
-      <form class="nav navbar-nav">
-        <input type="text" name="search" placeholder="hoppy search">
-      </form>
       
       <!-- FACEBOOK LOGIN GOES HERE -->
 
+
+</script>
+
+
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Eventual Facebook Login/Logout\</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Eventual Facebook Login</a></li>
       </ul>
 
       <!-- FACEBOOK!! ^^^^^^^^^^^^^^ -->
@@ -87,17 +89,20 @@
 </nav>
 
 <div class="container text-center">
-  <img src="images/happy.png" class='title' alt="happy">
-  <img src="images/hop.png" class='title' alt="hop">
+  <img src="../static/images/happy.png" class='title' alt="drinks">
+  <img src="../static/images/hop.png" class='title' alt="drinks">
+  <h3 style= 'color: black; text-shadow: 1px 1px #b1e7fe'>where's <i>your</i> happy hour?</h3>
+  <br>
+  <div class="col-sm-8 col-sm-offset-2 text-center">
+  <form>
+    <input type="text" name="search" placeholder="hoppy search">
+  </form>
+</div>
 
 <br><br><br><br>
 
-<div class="row">
-  <div class="col-md-6">
-    stuff goes in this column too
-    </div>
-    <div class="col-md-6">
-      <div id="map"></div>
+      <div class="col-sm-8 col-sm-offset-2 text-center">
+          <div id="map"></div>
             <script>
             var map;
             function initMap() {
@@ -109,8 +114,7 @@
             </script>
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy46kNvVglXfDw4ElaxAtCvmXhclI1U_o&callback=initMap"
                 async defer></script>
-    </div>
-  </div>
+</div>
 </div>
 </body>
 </html>

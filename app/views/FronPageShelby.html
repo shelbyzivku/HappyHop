@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Happy Hop</title>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/styles.css"
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <style>
+      body{
+        background-image:url('images/beer.jpg');
+        background-repeat:no-repeat;
+        background-position:center center;
+        background-size: auto;
+        padding-bottom: 75px;
+      }
+
+      #map { height: 350px; width: 100%;}
+        h1{font-family: 'Lora',serif;}
+        h1 small{
+        color:#4b4b4b;
+      }
+
+      input[type=text] {
+        width: 145px;
+        box-sizing: border-box;
+        border: 2px solid black;
+        border-radius: 4px;
+        font-size: 19px;
+        background-color: #b1e7fe;
+        background-image: url('searchicon.png');
+        background-position: 9px 9px;
+        background-repeat: no-repeat;
+        padding: 10px;
+    -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+}
+
+    input[type=text]:focus {
+       width: 100%;
+}
+
+    .navbar {
+      height: 50px;
+      margin-bottom: 2 px;
+      padding-bottom: 2 px;
+      border-radius: 0;
+      background: rgba(177, 231, 254, 0.8);
+    }
+
+    .title {
+      width: auto;
+      height: 200px;
+    }
+
+</style>
+      
+<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"></button>
+      <a class="" href="#"><img src="images/bunny.png" style="padding-top: 10px;" alt="drinking bunny" height="40" width="40"></a>
+    </div>
+      
+      <!-- FACEBOOK LOGIN GOES HERE -->
+
+
+</script>
+
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Eventual Facebook Login</a></li>
+      </ul>
+
+      <!-- FACEBOOK!! ^^^^^^^^^^^^^^ -->
+
+  </div>
+</nav>
+
+<div class="container text-center">
+  <img src="images/happy.png" class='title' alt="drinks">
+  <img src="images/hop.png" class='title' alt="drinks">
+  <h3 style= 'color: black; text-shadow: 1px 1px #b1e7fe'>where's <i>your</i> happy hour?</h3>
+  <br>
+  <div class="col-sm-8 col-sm-offset-2 text-center">
+  <form>
+    <input type="text" name="search" placeholder="hoppy search">
+  </form>
+</div>
+
+<br><br><br><br>
+
+      <div class="col-sm-8 col-sm-offset-2 text-center">
+          <div id="map"></div>
+            <script>
+            var map;
+            function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 37.397, lng: -121.933},
+            zoom: 10
+            });
+           }
+            </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy46kNvVglXfDw4ElaxAtCvmXhclI1U_o&callback=initMap"
+                async defer></script>
+</div>
+</div>
+</body>
+</html>
+

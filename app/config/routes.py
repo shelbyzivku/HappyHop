@@ -3,7 +3,8 @@ from system.core.router import routes
 routes['default_controller'] = 'HappyHops'
 routes['POST']['/happyhop/login'] = 'HappyHops#login'
 routes['POST']['/users/login'] = 'Users#index'
-routes['/testing/yelp'] = 'Tests#index'
+routes['/testing'] = 'Tests#index'
+routes['/testing/query/<int:location>'] = 'Tests#query'
 
 routes['POST']['/happyhop/<int:id>'] = 'HappyHops#message'
 
