@@ -1,5 +1,5 @@
-{{data['businesses']}}
 
-{%for biz in data['businesses']%}
-  {{biz['location']}}<br /><br />
+{%for x in data['businesses']%}
+  {{x['name']}}<br />
+  {{x['url']}}<br /><br />
 {%endfor%}

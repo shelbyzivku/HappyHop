@@ -39,11 +39,54 @@ class Tests(Controller):
 
         return self.load_view('/alvin/googleapiresult.html',hhlocations = hhlocations)
 
+
+
     def gethhlocations(self):
         hhlocations = self.db.query_db('SELECT street_number,street_name,city,state,zip_code FROM hhprofiles join locations on locations_id = locations.id')
         print hhlocations
         print type(hhlocations)
 
         return Response(json.dumps(hhlocations), mimetype='application/json')
+
+
+    def insertlocations(self):
+        url = "https://api.yelp.com/v3/businesses/search"
+        querystring = {"term":"happy hour","location":"95112"}
+        headers = {
+            'authorization': "Bearer C8K-8SczRtkkty_VmzqvtAKVTicHQW9D9qf8dBBG85KZn6ycLTGCUW6TCD-VKBjNoJ12x4BFLZ16Mmfb82Cy07f9okDAaM-VIV9qf2sqpbQDE1i0ANX625CJ_BfsV3Yx",
+            'cache-control': "no-cache",
+            'postman-token': "cb65d0da-ecee-7b91-346d-f1766bc3ce2a"
+        }
+
+        response = requests.request("GET", url, headers=headers, params=querystring)
+
+        for x in response.json()['businesses']:
+            print x['name'],x['location']['address1'],'\n',x['coordinates'],'\n\n'
+            query = 'INSERT INTO locations (address1,city,state,zip_code,latitude,longitude)\
+                     VALUES (:address1,:city,:state,:zip_code,:latitude,:longitude)'
+            data = {'address1':x['location']['address1'],
+            'city':x['location']['city'],
+            'state':x['location']['state'],
+            'zip_code':x['location']['zip_code'],
+            'latitude':x['coordinates']['latitude'],
+            'longitude':x['coordinates']['longitude']}
+            self.db.query_db(query,data)
+
+            query = 'SELECT id from locations WHERE address1 = :address1 LIMIT 1'
+            data = {'address1':x['location']['address1']}
+            id = self.db.query_db(query,data)[0]['id']
+
+            query = 'INSERT INTO hhprofiles (name,description,locations_id) VALUES(:name,:description,:id)'
+            data = {'name':x['name'],'description':x['url'],'id':id}
+            self.db.query_db(query,data)
+        return self.load_view('alvin/data.html', data = response.json())
+
+
+
+
+
+
+
+
 
     def dummy():pass
