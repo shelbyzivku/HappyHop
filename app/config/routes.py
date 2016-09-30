@@ -1,24 +1,28 @@
 from system.core.router import routes
 
 routes['default_controller'] = 'HappyHops'
+
 routes['POST']['/happyhop/login'] = 'HappyHops#login'
+
 routes['POST']['/users/login'] = 'Users#index'
 
 routes['POST']['/happyhop/<int:id>'] = 'HappyHops#message'
 
 routes['/happyhop/<int:id>'] = 'HappyHops#happyhopdetail'
 
+routes['/testing'] = 'Tests#index'
+
+routes['GET']['/testing/yes'] = 'Tests#showresults'
+
+routes['GET']['/testing/gethhlocations'] = 'Tests#gethhlocations'
+
+"""
+
 # routes['POST']['/happyhop/comment'] = "HappyHops#comment"
 
 # routes['POST']['/'] = 'Users#post_remove'
 #
 # routes['POST']['/'] = 'Users#comment_remove'
-
-routes['/testing'] = 'Tests#index'
-routes['GET']['/testing/yes'] = 'Tests#showresults'
-routes['GET']['/testing/gethhlocations'] = 'Tests#gethhlocations'
-
-"""
     This is where you define routes
 
     Start by defining the default controller
