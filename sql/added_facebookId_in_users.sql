@@ -1,1 +1,0 @@
-alter table  users add column facebook_id varchar(255);
