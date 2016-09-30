@@ -12,9 +12,8 @@ routes['/happyhop/<int:id>'] = 'HappyHops#happyhopdetail'
 
 routes['/testing'] = 'Tests#index'
 
-routes['GET']['/testing/yes'] = 'Tests#showresults'
 
-routes['GET']['/testing/gethhlocations'] = 'Tests#gethhlocations'
+routes['GET']['/testing/test'] = 'Tests#showresults'
 routes['GET']['/testing/getyelp'] = 'Tests#insertlocations'
 
 """

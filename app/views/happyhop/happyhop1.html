@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Happy Hop</title>
+    <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="/static/images/beer2.png" type="image/png"/>
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/styles.css"
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+      body{
+        background-image:url('../static/images/backgroundbeer.jpg');
+        background-repeat:no-repeat;
+        background-position:center center;
+        background-size: auto;
+        padding-bottom: 75px;
+      }
+
+      #map { height: 350px; width: 100%;}
+        h1{font-family: 'Lora',serif;}
+        h1 small{
+        color:#4b4b4b;
+      }
+
+      input[type=text] {
+        width: 145px;
+        box-sizing: border-box;
+        border: 2px solid black;
+        border-radius: 4px;
+        font-size: 19px;
+        background-color: #b1e7fe;
+        background-image: url('searchicon.png');
+        background-position: 9px 9px;
+        background-repeat: no-repeat;
+        padding: 10px;
+    -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+}
+
+    input[type=text]:focus {
+       width: 100%;
+}
+
+    .navbar {
+      height: 110px;
+      margin-bottom: 2px;
+      padding-bottom: 2px;
+      padding-top: 2px;
+      border-radius: 0;
+      background: rgba(177, 231, 254, 0.8);
+          }
+
+    .title {
+      width: auto;
+      height: 200px;
+    }
+
+    #div1 {
+      display: inline-block;
+}
+
+</style>
+
+<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+  </head>
+  <body>
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"></button>
+      <a class="" href="#"><img src="../static/images/bunny.png" style="padding-top: 10px;" alt="drinking bunny" height="100" width="100"></a>
+    </div>
+
+      <!-- FACEBOOK LOGIN GOES HERE -->
+
+
+</script>
+
+
+      <ul class="nav navbar-nav navbar-right">
+        <div id ="div1" class="fb-login-button" scope="public_profile, email" data-max-rows="1" data-size="large" data-show-faces="true" data-auto-logout-link="true" onlogin="checkLoginState();"></div>
+      </ul>
+
+      <!-- FACEBOOK!! ^^^^^^^^^^^^^^ -->
+
+  </div>
+</nav>
+     <div id="fb-root"></div>
+<script>
+
+function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      var accessToken = response.authResponse.accessToken;
+      console.log(response.authResponse.accessToken);
+
+    }
+  }
+
+
+
+function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+
+    });
+
+    FB.api('/me?fields=id,name,email', function(response) {
+       console.log(JSON.stringify(response));
+       //console.log(response.name);
+       var user_name = response.name;
+       var user_email = response.email;
+       console.log(response.user_email);
+       get_data(response.id, user_name, user_email);
+    });
+  }
+
+	(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=1785016801778237";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+
+ function get_data(id, name, email){
+ 	$.ajax({
+	  method: "POST",
+	  url: "/happyhop/login",
+	  data: {"facebookId" :id, "name": name, "email": email }
+	})
+	  .done(function( msg ) {
+	  	if (msg == 'ok')
+	       //return redirect('/happyhop')
+	       location.reload();
+  });
+ }
+
+</script>
+
+<br><br>
+<div class="container text-center">
+  <img src="../static/images/happy.png" class='title' alt="drinks">
+  <img src="../static/images/hop.png" class='title' alt="drinks">
+  <h3 style= 'color: black; text-shadow: 1px 1px #b1e7fe'>where's <i>your</i> happy hour?</h3>
+  <br>
+  <div class="col-sm-8 col-sm-offset-2 text-center">
+  <!-- <form>
+    <input type="text" name="search" placeholder="hoppy search">
+  </form> -->
+  </div>
+
+  <br><br><br><br>
+  <div class="col-sm-12 col-sm-offset-0 text-center">
+      <div id="map"></div>
+        <script>
+        var map;
+        function initMap() {
+          var map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 37.33435, lng: -121.88964},
+            zoom: 14,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          });
+          data = {{locations|tojson}}
+
+          var infowindow = new google.maps.InfoWindow();
+          var i;
+
+          for (i = 0; i < data.length; i++) {
+            //console.log(data[i]['name']);
+
+            var latitude = data[i]['latitude'];
+            var longitude = data[i]['longitude'];
+            var name = '<a href="'+data[i]['description']+'">'+data[i]['name']+'</a>';
+
+            var marker = new google.maps.Marker({
+              position: new google.maps.LatLng(latitude, longitude),
+              map: map
+            });
+            attachInfo(marker,name);
+          }
+        }
+        function attachInfo(marker,name){
+          var infowindow = new google.maps.InfoWindow({content:name});
+          //marker.addListener('mouseover',function(){infowindow.open(marker.get('map'),marker);});
+          marker.addListener('click',function(){infowindow.open(marker.get('map'),marker);});
+          //marker.addListener('mouseout', function(){infowindow.close();});
+        }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy46kNvVglXfDw4ElaxAtCvmXhclI1U_o&callback=initMap"
+            async defer></script>
+          </div>
+</div>
+{% for hhlocation in hhlocations %}
+<a href='/happyhop/{{ hhlocation['id']}}'>{{ hhlocation['name']}}</a><br>
+{% endfor %}
+
+  </body>
+</html>
