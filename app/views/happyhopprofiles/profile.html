@@ -8,8 +8,7 @@
 
     <h3>Happy Hop Profile Page</h3>
     <p><strong>Name:</strong> {{happyhopname['name']}}</p>
-    <p><strong>Address:</strong>{{happyhoplocation['street_number']}} {{happyhoplocation['street_name']}},
-    {{happyhoplocation['city']}} {{happyhoplocation['state']}}</p>
+    <p><strong>Address:</strong>{{happyhoplocation['address1']}}</p>
     <div id ="div1" class="fb-login-button" scope="public_profile, email" data-max-rows="1" data-size="large" data-show-faces="true" data-auto-logout-link="true" onlogin="checkLoginState();"></div>
         <form role="form" action="/happyhop/{{happyhopname['id']}}" method="POST">
     					<div class="form-group">

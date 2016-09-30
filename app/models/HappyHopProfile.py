@@ -25,12 +25,12 @@ class HappyHopProfile(Model):
         return hhname[0]
 
     def get_hhlocation_by_id(self, id):
-        query = 'SELECT l.id as locationId,l.street_number, l.street_name, l.city, l.state FROM locations l INNER JOIN hhprofiles p WHERE l.id = p.locations_id AND p.id = :hhprofiles_id'
+        query = 'SELECT l.id as locationId,l.address1 FROM locations l INNER JOIN hhprofiles p WHERE l.id = p.locations_id AND p.id = :hhprofiles_id'
         data = { 'hhprofiles_id': id }
         hhlocation = self.db.query_db(query, data)
         return hhlocation[0]
 
     def display_all_messages_hhname_by_id(self, id):
-        query = "SELECT p.content, date_format(p.created_at,'%D-%M-%Y') as created_at, u.user_name  from posts p inner join hhprofiles hp on p.hhprofiles_id = hp.id inner join users u on u.id =p.user_id and hp.id = :hhprofiles_id"
+        query = "SELECT p.content, date_format(p.created_at,'%D-%M-%Y') as created_at, u.user_name  from posts p inner join hhprofiles hp on p.hhprofiles_id = hp.id inner join users u on u.id =p.users_id and hp.id = :hhprofiles_id"
         data = { 'hhprofiles_id': id }
         return self.db.query_db(query, data)
