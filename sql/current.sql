@@ -28,8 +28,8 @@ CREATE TABLE IF NOT EXISTS `happyhopdb`.`locations` (
   `city` VARCHAR(255) NOT NULL,
   `state` VARCHAR(45) NOT NULL,
   `zip_code` INT(11) NOT NULL,
-  `created_at` DATETIME NULL DEFAULT NULL,
-  `updated_at` DATETIME NULL DEFAULT NULL,
+  `created_at` DATETIME NULL DEFAULT NOW(),
+  `updated_at` DATETIME NULL DEFAULT NOW(),
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 64
@@ -42,9 +42,9 @@ DEFAULT CHARACTER SET = latin1;
 CREATE TABLE IF NOT EXISTS `happyhopdb`.`hhprofiles` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
-  `description` VARCHAR(45) NULL DEFAULT NULL,
-  `created_at` DATETIME NOT NULL,
-  `updated_at` DATETIME NOT NULL,
+  `description` VARCHAR(255) NOT NULL,
+  `created_at` DATETIME NOT NULL DEFAULT NOW(),
+  `updated_at` DATETIME NOT NULL DEFAULT NOW(),
   `locations_id` INT(11) NOT NULL,
   PRIMARY KEY (`id`, `locations_id`),
   INDEX `fk_hhprofiles_locations1_idx` (`locations_id` ASC),
