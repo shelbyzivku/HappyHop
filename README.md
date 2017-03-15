@@ -1,11 +1,17 @@
 HAPPY HOP
+
 An app for finding the closest open happy hour to your location.
+
 Yelp & Google API's were implemented and was built with the Pylot framwork.
+
 Pylot instructions are below ...
 
 This app was built in 3 days with 
+
 Sunidhi Yadav
+
 Alvin Chen
+
 Alejandro Diehl
 
 # Pylot Installation
