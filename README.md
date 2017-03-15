@@ -1,10 +1,14 @@
-This is a Project leveraging Pylot and APIs to build a useful website.
-# Pylot MVC (beta)
-Pylot MVC is a lightweight MVC framework built in Python leveraging flask.
+HAPPY HOP
+An app for finding the closest open happy hour to your location.
+Yelp & Google API's were implemented and was built with the Pylot framwork.
+Pylot instructions are below ...
 
-This framework is currently still in development. If you want to play around with it read on or clone the stable version!
+This app was built in 3 days with 
+Sunidhi Yadav
+Alvin Chen
+Alejandro Diehl
 
-# Installation
+# Pylot Installation
 
 First make sure you have pip installed. If you don't have it installed there are great instructions here: https://pip.pypa.io/en/latest/installing.html
 
@@ -32,4 +36,4 @@ Now you can start your development server like so:
 python manage.py runserver
 ```
 
-Enjoy! More details/features coming soon!
+Enjoy! 
